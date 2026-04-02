@@ -3,10 +3,12 @@ import { useState } from 'react';
 import { useCartStore } from '../../store/cartStore';
 import CartDrawer from './CartDrawer';
 import SellModal from './SellModal';
+import AccountModal from './AccountModal';
 
 export default function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSellOpen, setIsSellOpen] = useState(false);
+  const [isAccountOpen, setIsAccountOpen] = useState(false);
   const cart = useCartStore((state) => state.cart);
 
   return (
@@ -47,7 +49,10 @@ export default function Header() {
               )}
             </button>
 
-            <button className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-2xl font-semibold hover:bg-zinc-100 transition-colors">
+            <button 
+              onClick={() => setIsAccountOpen(true)}
+              className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-2xl font-semibold hover:bg-zinc-100 transition-colors"
+            >
               <User className="w-5 h-5" />
               <span className="hidden sm:inline">Account</span>
             </button>
@@ -57,6 +62,7 @@ export default function Header() {
 
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <SellModal isOpen={isSellOpen} onClose={() => setIsSellOpen(false)} />
+      <AccountModal isOpen={isAccountOpen} onClose={() => setIsAccountOpen(false)} />
     </>
   );
 }
