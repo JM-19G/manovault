@@ -60,11 +60,16 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Products Section */}
+              {/* Products Section */}
       <div className="max-w-7xl mx-auto px-6 pb-20">
-        <h2 className="text-4xl font-semibold mb-10">
-          {activeTab === 'cars' ? 'Featured Cars' : 'Popular Auto Parts'}
-        </h2>
+        <div className="flex items-center justify-between mb-10">
+          <h2 className="text-4xl font-semibold">
+            {activeTab === 'cars' ? 'Featured Cars' : 'Popular Auto Parts'}
+          </h2>
+          <p className="text-zinc-400 text-sm">
+            {activeTab === 'cars' ? 'New & Used Vehicles' : 'Genuine & Aftermarket Parts'}
+          </p>
+        </div>
         
         <ProductGrid type={activeTab} />
       </div>
