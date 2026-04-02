@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Car, Wrench, Search } from 'lucide-react';
+import { Car, Wrench } from 'lucide-react';
 import VehicleSelector from '../components/common/VehicleSelector';
 import ProductGrid from '../components/marketplace/ProductGrid';
 
@@ -51,11 +51,14 @@ export default function Home() {
       </div>
 
       {/* Products Section */}
-      <div className="max-w-7xl mx-auto px-6 pb-20">
+      <div className="max-w-7xl mx-auto px-6 pb-24">
         <div className="flex items-center justify-between mb-10">
           <h2 className="text-4xl font-semibold">
             {activeTab === 'cars' ? 'Featured Cars' : 'Popular Auto Parts'}
           </h2>
+          <p className="text-zinc-400">
+            {activeTab === 'cars' ? 'New & Used Vehicles' : 'Genuine & Aftermarket Parts'}
+          </p>
         </div>
         
         <ProductGrid type={activeTab} filters={filters} />
