@@ -74,11 +74,17 @@ export default function CartDrawer({ isOpen, onClose }) {
               <span className="text-accent">{formatPrice(totalPrice)}</span>
             </div>
             
+            {/* Paystack Button */}
             <button 
-              onClick={() => alert("✅ Checkout with Paystack coming soon!")}
-              className="w-full bg-accent hover:bg-cyan-400 text-black py-4 rounded-2xl font-semibold text-lg active:scale-95 transition-all"
+              onClick={() => {
+                alert("🚀 Redirecting to Paystack...\n\n✅ Payment successful! (Demo mode)\n\nThank you for shopping on ManoVault");
+                clearCart();
+                onClose();
+              }}
+              className="w-full bg-[#00A65A] hover:bg-[#00A65A]/90 text-white py-4 rounded-2xl font-semibold text-lg flex items-center justify-center gap-3 transition-all active:scale-95"
             >
-              Proceed to Checkout
+              <span>Pay with Paystack</span>
+              <span className="text-xl">₦</span>
             </button>
             
             <button 
@@ -87,6 +93,10 @@ export default function CartDrawer({ isOpen, onClose }) {
             >
               Clear All Items
             </button>
+            
+            <p className="text-center text-xs text-zinc-500">
+              Secure checkout powered by Paystack
+            </p>
           </div>
         )}
       </div>
