@@ -11,7 +11,8 @@ export default function ProductGrid({ type, filters }) {
     return products.filter(product => {
       const matchesSearch = !searchTerm || 
         product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (product.make && product.make.toLowerCase().includes(searchTerm.toLowerCase()));
+        (product.make && product.make.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (product.model && product.model.toLowerCase().includes(searchTerm.toLowerCase()));
 
       const matchesMake = !filters.make || product.make === filters.make;
       const matchesModel = !filters.model || product.model === filters.model;
@@ -25,7 +26,7 @@ export default function ProductGrid({ type, filters }) {
       <div className="mb-8">
         <input
           type="text"
-          placeholder={`Search ${type === 'cars' ? 'cars' : 'parts'}...`}
+          placeholder={`Search ${type === 'cars' ? 'cars' : 'auto parts'}...`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:border-accent placeholder-zinc-500"
@@ -34,7 +35,8 @@ export default function ProductGrid({ type, filters }) {
 
       {filteredProducts.length === 0 ? (
         <div className="text-center py-20">
-          <p className="text-xl text-zinc-400">No matching {type} found</p>
+          <p className="text-xl text-zinc-400">No matching {type} found for your filter</p>
+          <p className="text-sm text-zinc-500 mt-2">Try changing the vehicle selection or search term</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

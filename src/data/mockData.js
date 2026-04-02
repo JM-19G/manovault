@@ -34,22 +34,35 @@ export const mockCars = [
     year: 2021,
     make: "Lexus",
     model: "RX"
+  },
+  {
+    id: 4,
+    type: 'car',
+    title: "Toyota Corolla 2020",
+    price: 12500000,
+    location: "Ibadan",
+    image: "https://picsum.photos/id/1074/600/400",
+    condition: "Used",
+    year: 2020,
+    make: "Toyota",
+    model: "Corolla"
   }
 ];
 
 export const mockParts = [
   {
-    id: 4,
+    id: 5,
     type: 'part',
     title: "Toyota Camry Brake Pads (Front)",
     price: 45000,
     location: "Lagos",
     image: "https://picsum.photos/id/1060/600/400",
     compatible: "2018-2024 Camry",
-    category: "Brakes"
+    category: "Brakes",
+    make: "Toyota"
   },
   {
-    id: 5,
+    id: 6,
     type: 'part',
     title: "LED Headlights Pair (H11)",
     price: 85000,
@@ -59,13 +72,24 @@ export const mockParts = [
     category: "Lighting"
   },
   {
-    id: 6,
+    id: 7,
     type: 'part',
-    title: "Michelin Tyre 205/55 R16",
-    price: 125000,
+    title: "Michelin 205/55 R16 Tyres (Set of 4)",
+    price: 480000,
     location: "Abuja",
     image: "https://picsum.photos/id/1062/600/400",
     compatible: "Camry, Corolla, Civic",
     category: "Tyres"
+  },
+  {
+    id: 8,
+    type: 'part',
+    title: "Toyota Hilux Shock Absorber",
+    price: 65000,
+    location: "Port Harcourt",
+    image: "https://picsum.photos/id/1063/600/400",
+    compatible: "Hilux 2016-2023",
+    category: "Suspension",
+    make: "Toyota"
   }
 ];
