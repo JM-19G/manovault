@@ -1,13 +1,13 @@
-import { Car, User, ShoppingCart } from 'lucide-react';
+import { Car, User, ShoppingCart, Plus } from 'lucide-react';
 import { useState } from 'react';
 import { useCartStore } from '../../store/cartStore';
 import CartDrawer from './CartDrawer';
+import SellModal from './SellModal';
 
 export default function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isSellOpen, setIsSellOpen] = useState(false);
   const cart = useCartStore((state) => state.cart);
-
-  const cartCount = cart.length;
 
   return (
     <>
@@ -26,19 +26,23 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
             <a href="#" className="hover:text-accent transition-colors">Browse Cars</a>
             <a href="#" className="hover:text-accent transition-colors">Browse Parts</a>
-            <a href="#" className="hover:text-accent transition-colors">Sell</a>
+            <button 
+              onClick={() => setIsSellOpen(true)}
+              className="flex items-center gap-2 hover:text-accent transition-colors"
+            >
+              <Plus className="w-4 h-4" /> Sell
+            </button>
           </nav>
 
           <div className="flex items-center gap-4">
-            {/* Cart Button */}
             <button 
               onClick={() => setIsCartOpen(true)}
               className="relative p-3 hover:bg-zinc-800 rounded-xl transition-colors"
             >
               <ShoppingCart className="w-6 h-6" />
-              {cartCount > 0 && (
+              {cart.length > 0 && (
                 <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
-                  {cartCount}
+                  {cart.length}
                 </div>
               )}
             </button>
@@ -52,6 +56,7 @@ export default function Header() {
       </header>
 
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <SellModal isOpen={isSellOpen} onClose={() => setIsSellOpen(false)} />
     </>
   );
 }
