@@ -305,7 +305,7 @@
 // ];
 
 // ============================================================
-// ManoVault - Mock Data (Improved)
+// ManoVault - Mock Data with Multiple Images Support
 // ============================================================
 
 const CAR_IMAGES = {
@@ -370,13 +370,12 @@ const CAR_IMAGES = {
     "https://loremflickr.com/800/600/lexus,nx,interior/all?lock=1302"
   ],
 
-  // Others (Hyundai, Kia, Ford, Nissan)
-  "Hyundai Tucson":   "https://loremflickr.com/800/600/hyundai,tucson/all?lock=1401",
+  // Others
+  "Hyundai Tucson": "https://loremflickr.com/800/600/hyundai,tucson/all?lock=1401",
   "Hyundai Santa Fe": "https://loremflickr.com/800/600/hyundai,santafe/all?lock=1501",
-  "Kia Sportage":     "https://loremflickr.com/800/600/kia,sportage/all?lock=1601",
-  "Kia Sorento":      "https://loremflickr.com/800/600/kia,sorento/all?lock=1701",
-  "Ford Explorer":    "https://loremflickr.com/800/600/ford,explorer/all?lock=1801",
-  "Nissan Altima":    "https://loremflickr.com/800/600/nissan,altima/all?lock=1901",
+  "Kia Sportage": "https://loremflickr.com/800/600/kia,sportage/all?lock=1601",
+  "Ford Explorer": "https://loremflickr.com/800/600/ford,explorer/all?lock=1801",
+  "Nissan Altima": "https://loremflickr.com/800/600/nissan,altima/all?lock=1901",
 };
 
 const PART_IMAGES = {
@@ -386,35 +385,31 @@ const PART_IMAGES = {
   Suspension: "https://loremflickr.com/800/600/car,shock,absorber/all?lock=904",
   Electrical: "https://loremflickr.com/800/600/car,battery/all?lock=905",
   Engine:     "https://loremflickr.com/800/600/car,engine,part/all?lock=906",
-  Body:       "https://loremflickr.com/800/600/car,bumper/all?lock=907",
-  Interior:   "https://loremflickr.com/800/600/car,interior,seat/all?lock=908",
 };
 
-// Mock Cars (using the array from CAR_IMAGES when available)
+// Mock Cars with extraImages for gallery
 export const mockCars = [
-  // Toyota
-  { id: 1,  type: "car", title: "Toyota Camry 2022 (Silver)",   price: 18500000, location: "Lagos Island", image: CAR_IMAGES["Toyota Camry"][0], condition: "Used", year: 2022, make: "Toyota", model: "Camry" },
-  { id: 2,  type: "car", title: "Toyota Camry 2020 (Black)",    price: 15500000, location: "Abuja",        image: CAR_IMAGES["Toyota Camry"][0], condition: "Used", year: 2020, make: "Toyota", model: "Camry" },
-  { id: 3,  type: "car", title: "Toyota Corolla 2021 (White)",  price: 14500000, location: "Ibadan",       image: CAR_IMAGES["Toyota Corolla"][0], condition: "Used", year: 2021, make: "Toyota", model: "Corolla" },
-  { id: 4,  type: "car", title: "Toyota Hilux 2022 (White)",    price: 24500000, location: "Lagos",        image: CAR_IMAGES["Toyota Hilux"][0], condition: "Used", year: 2022, make: "Toyota", model: "Hilux" },
-  { id: 5,  type: "car", title: "Toyota RAV4 2023 (Silver)",    price: 29500000, location: "Lekki",        image: CAR_IMAGES["Toyota RAV4"][0], condition: "Used", year: 2023, make: "Toyota", model: "RAV4" },
+  { id: 1,  type: "car", title: "Toyota Camry 2022 (Silver)",   price: 18500000, location: "Lagos Island",  image: CAR_IMAGES["Toyota Camry"][0], extraImages: CAR_IMAGES["Toyota Camry"], condition: "Used", year: 2022, make: "Toyota", model: "Camry" },
+  { id: 2,  type: "car", title: "Toyota Camry 2020 (Black)",    price: 15500000, location: "Abuja",         image: CAR_IMAGES["Toyota Camry"][0], extraImages: CAR_IMAGES["Toyota Camry"], condition: "Used", year: 2020, make: "Toyota", model: "Camry" },
+  { id: 3,  type: "car", title: "Toyota Corolla 2021 (White)",  price: 14500000, location: "Ibadan",        image: CAR_IMAGES["Toyota Corolla"][0], extraImages: CAR_IMAGES["Toyota Corolla"], condition: "Used", year: 2021, make: "Toyota", model: "Corolla" },
+  { id: 4,  type: "car", title: "Toyota Hilux 2022 (White)",    price: 24500000, location: "Lagos",         image: CAR_IMAGES["Toyota Hilux"][0], extraImages: CAR_IMAGES["Toyota Hilux"], condition: "Used", year: 2022, make: "Toyota", model: "Hilux" },
+  { id: 5,  type: "car", title: "Toyota RAV4 2023 (Silver)",    price: 29500000, location: "Lekki",         image: CAR_IMAGES["Toyota RAV4"][0], extraImages: CAR_IMAGES["Toyota RAV4"], condition: "Used", year: 2023, make: "Toyota", model: "RAV4" },
 
-  // Honda
-  { id: 6,  type: "car", title: "Honda Civic 2023 (Red)",       price: 16800000, location: "Abuja",        image: CAR_IMAGES["Honda Civic"][0], condition: "Used", year: 2023, make: "Honda", model: "Civic" },
-  { id: 7,  type: "car", title: "Honda Accord 2022 (Black)",    price: 22000000, location: "Lekki",        image: CAR_IMAGES["Honda Accord"][0], condition: "Used", year: 2022, make: "Honda", model: "Accord" },
-  { id: 8,  type: "car", title: "Honda CR-V 2023 (Blue)",       price: 27000000, location: "Abuja",        image: CAR_IMAGES["Honda CR-V"][0], condition: "Used", year: 2023, make: "Honda", model: "CR-V" },
+  { id: 6,  type: "car", title: "Honda Civic 2023 (Red)",       price: 16800000, location: "Abuja",         image: CAR_IMAGES["Honda Civic"][0], extraImages: CAR_IMAGES["Honda Civic"], condition: "Used", year: 2023, make: "Honda", model: "Civic" },
+  { id: 7,  type: "car", title: "Honda Accord 2022 (Black)",    price: 22000000, location: "Lekki",         image: CAR_IMAGES["Honda Accord"][0], extraImages: CAR_IMAGES["Honda Accord"], condition: "Used", year: 2022, make: "Honda", model: "Accord" },
+  { id: 8,  type: "car", title: "Honda CR-V 2023 (Blue)",       price: 27000000, location: "Abuja",         image: CAR_IMAGES["Honda CR-V"][0], extraImages: CAR_IMAGES["Honda CR-V"], condition: "Used", year: 2023, make: "Honda", model: "CR-V" },
 
-  // Mercedes, Lexus, etc. (add more as you like using the same pattern)
-  { id: 9,  type: "car", title: "Mercedes-Benz C300 2022",      price: 35000000, location: "Lekki",        image: CAR_IMAGES["Mercedes-Benz C-Class"][0], condition: "Used", year: 2022, make: "Mercedes-Benz", model: "C-Class" },
-  { id: 10, type: "car", title: "Lexus RX 350 2022",            price: 45000000, location: "Lagos Island", image: CAR_IMAGES["Lexus RX"][0], condition: "Used", year: 2022, make: "Lexus", model: "RX" },
+  { id: 9,  type: "car", title: "Mercedes-Benz C300 2022",      price: 35000000, location: "Lekki",         image: CAR_IMAGES["Mercedes-Benz C-Class"][0], extraImages: CAR_IMAGES["Mercedes-Benz C-Class"], condition: "Used", year: 2022, make: "Mercedes-Benz", model: "C-Class" },
+  { id: 10, type: "car", title: "Lexus RX 350 2022",            price: 45000000, location: "Lagos Island",  image: CAR_IMAGES["Lexus RX"][0], extraImages: CAR_IMAGES["Lexus RX"], condition: "Used", year: 2022, make: "Lexus", model: "RX" },
 ];
 
-// Mock Parts (unchanged - good as is)
+// Mock Parts
 export const mockParts = [
   { id: 101, type: "part", title: "Toyota Camry Brake Pads (Front Set)", price: 45000, location: "Lagos", image: PART_IMAGES.Brakes, compatible: "2018–2024 Camry", category: "Brakes", make: "Toyota" },
   { id: 102, type: "part", title: "LED Headlights Pair", price: 85000, location: "Abuja", image: PART_IMAGES.Lighting, compatible: "Toyota & Honda", category: "Lighting" },
   { id: 103, type: "part", title: "Michelin Tyres (Set of 4)", price: 480000, location: "Lagos", image: PART_IMAGES.Tyres, compatible: "Camry, Corolla, Civic", category: "Tyres" },
-  // ... you can keep or add more from your previous list
+  { id: 104, type: "part", title: "Shock Absorber (Pair)", price: 65000, location: "Port Harcourt", image: PART_IMAGES.Suspension, compatible: "SUVs & Trucks", category: "Suspension" },
+  { id: 105, type: "part", title: "12V Car Battery", price: 95000, location: "Lagos", image: PART_IMAGES.Electrical, compatible: "Most Cars", category: "Electrical" },
 ];
 
 export const CAR_MAKES = ["Toyota", "Honda", "Mercedes-Benz", "Lexus", "Hyundai", "Kia", "Ford", "Nissan"];
@@ -425,9 +420,9 @@ export const CAR_MODELS = {
   "Mercedes-Benz": ["C-Class", "E-Class", "GLC"],
   Lexus: ["RX", "ES", "NX"],
   Hyundai: ["Tucson", "Santa Fe"],
-  Kia: ["Sportage", "Sorento"],
-  Ford: ["Explorer", "Ranger"],
-  Nissan: ["Altima", "Pathfinder"]
+  Kia: ["Sportage"],
+  Ford: ["Explorer"],
+  Nissan: ["Altima"]
 };
 
 export const YEARS = Array.from({ length: 12 }, (_, i) => 2015 + i);

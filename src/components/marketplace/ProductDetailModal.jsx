@@ -16,10 +16,9 @@ export default function ProductDetailModal({ product, isOpen, onClose }) {
 
   if (!isOpen || !product) return null;
 
-  // For Cars: Use multiple images (main + extras)
-  // For Parts: Use only the single image
-  const images = product.type === 'car' 
-    ? [product.image, ...(product.extraImages || [])] 
+  // Handle images for Cars vs Parts
+  const images = product.type === 'car' && product.extraImages 
+    ? [product.image, ...product.extraImages.filter(img => img !== product.image)] 
     : [product.image];
 
   const currentImage = images[currentImageIndex] || product.image;
@@ -29,85 +28,84 @@ export default function ProductDetailModal({ product, isOpen, onClose }) {
       <div className="fixed inset-0 bg-black/70 z-50" onClick={onClose} />
       
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="bg-zinc-900 border border-zinc-700 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-zinc-900 border border-zinc-700 rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-hidden flex flex-col">
           
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-zinc-700">
             <h2 className="text-2xl font-semibold">Product Details</h2>
-            <button onClick={onClose} className="p-2 hover:bg-zinc-800 rounded-xl">
+            <button 
+              onClick={onClose} 
+              className="p-3 hover:bg-zinc-800 rounded-2xl transition-colors"
+            >
               <X className="w-6 h-6" />
             </button>
           </div>
 
-          <div className="flex-1 overflow-auto p-6">
+          <div className="flex-1 overflow-auto p-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
               
-              {/* Image Gallery - Only for Cars */}
+              {/* Images Section */}
               <div>
-                <div className="relative">
+                <div className="relative bg-black rounded-3xl overflow-hidden">
                   <img 
                     src={currentImage} 
                     alt={product.title}
-                    className="w-full aspect-video object-cover rounded-3xl"
+                    className="w-full aspect-video object-cover"
                   />
-                  
-                  {/* Image Navigation (only show if multiple images) */}
-                  {images.length > 1 && (
-                    <div className="flex gap-3 mt-4 justify-center">
-                      {images.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setCurrentImageIndex(index)}
-                          className={`w-3 h-3 rounded-full transition-all ${
-                            index === currentImageIndex 
-                              ? 'bg-accent scale-125' 
-                              : 'bg-zinc-600 hover:bg-zinc-500'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  )}
                 </div>
 
-                {/* Image Type Labels */}
-                {product.type === 'car' && (
-                  <div className="mt-6 flex gap-4 text-sm">
-                    <div className="px-4 py-2 bg-zinc-800 rounded-2xl">Exterior</div>
-                    <div className="px-4 py-2 bg-zinc-800 rounded-2xl">Interior</div>
+                {/* Navigation Dots - only show if multiple images */}
+                {images.length > 1 && (
+                  <div className="flex justify-center gap-3 mt-6">
+                    {images.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`w-3.5 h-3.5 rounded-full transition-all ${
+                          index === currentImageIndex 
+                            ? 'bg-accent scale-125' 
+                            : 'bg-zinc-600 hover:bg-zinc-400'
+                        }`}
+                      />
+                    ))}
                   </div>
                 )}
               </div>
 
-              {/* Product Info */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="bg-zinc-800 text-xs px-4 py-1.5 rounded-full">
-                    {product.condition || product.compatible || product.category}
-                  </span>
-                  {product.year && (
-                    <span className="bg-zinc-800 text-xs px-4 py-1.5 rounded-full">
-                      {product.year}
-                    </span>
-                  )}
+              {/* Product Information */}
+              <div className="space-y-6">
+                <div>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {product.condition && (
+                      <span className="bg-zinc-800 px-4 py-1.5 rounded-full text-xs font-medium">
+                        {product.condition}
+                      </span>
+                    )}
+                    {product.year && (
+                      <span className="bg-zinc-800 px-4 py-1.5 rounded-full text-xs font-medium">
+                        {product.year}
+                      </span>
+                    )}
+                  </div>
+
+                  <h1 className="text-3xl font-bold mb-2">{product.title}</h1>
+                  <p className="text-zinc-400 text-lg">{product.location}</p>
                 </div>
-                
-                <h1 className="text-3xl font-semibold mb-2">{product.title}</h1>
-                <p className="text-zinc-400 mb-6">{product.location}</p>
-                
-                <div className="text-5xl font-bold text-accent mb-8">
+
+                <div className="text-5xl font-bold text-accent tracking-tight">
                   {formatPrice(product.price)}
                 </div>
 
                 {product.make && product.model && (
-                  <div className="mb-6">
-                    <p className="text-sm text-zinc-400">Make / Model</p>
-                    <p className="font-medium text-lg">{product.make} {product.model}</p>
+                  <div>
+                    <p className="text-sm text-zinc-400 mb-1">Make / Model</p>
+                    <p className="font-semibold text-xl">{product.make} {product.model}</p>
                   </div>
                 )}
 
                 {product.compatible && (
-                  <div className="mb-8">
-                    <p className="text-sm text-zinc-400">Compatible with</p>
+                  <div>
+                    <p className="text-sm text-zinc-400 mb-1">Compatible with</p>
                     <p className="font-medium">{product.compatible}</p>
                   </div>
                 )}
@@ -117,7 +115,7 @@ export default function ProductDetailModal({ product, isOpen, onClose }) {
                     addToCart(product);
                     onClose();
                   }}
-                  className="w-full bg-accent hover:bg-cyan-400 text-black py-5 rounded-2xl font-semibold text-lg flex items-center justify-center gap-3 transition-all active:scale-95"
+                  className="w-full mt-8 bg-accent hover:bg-cyan-400 text-black py-5 rounded-2xl font-semibold text-lg flex items-center justify-center gap-3 transition-all active:scale-[0.98]"
                 >
                   <ShoppingCart className="w-6 h-6" />
                   Add to Cart
