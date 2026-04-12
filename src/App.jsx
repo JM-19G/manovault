@@ -4,7 +4,7 @@ import Footer from './components/common/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-black text-white">
       <Header />
       <Home />
       <Footer />

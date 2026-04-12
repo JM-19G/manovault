@@ -7,6 +7,11 @@ export default function ProductCard({ product }) {
   const addToCart = useCartStore((state) => state.addToCart);
   const [showDetail, setShowDetail] = useState(false);
 
+  const imageSrc =
+    product.imageUrl && product.imageUrl.trim()
+      ? product.imageUrl.trim()
+      : product.image;
+
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-NG', {
       style: 'currency',
@@ -17,50 +22,67 @@ export default function ProductCard({ product }) {
 
   return (
     <>
-      <div 
+      {/* CARD */}
+      <div
         onClick={() => setShowDetail(true)}
-        className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:border-accent transition-all group cursor-pointer"
+        className="group cursor-pointer bg-zinc-900/70 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hover:scale-[1.02] hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-300"
       >
-        <div className="relative h-56">
-          <img 
-            src={product.image} 
+        
+        {/* IMAGE */}
+        <div className="relative overflow-hidden">
+          <img
+            src={imageSrc}
             alt={product.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-52 object-cover group-hover:scale-110 transition duration-500"
           />
-          <div className="absolute top-4 right-4 bg-black/80 px-3 py-1 rounded-full text-xs font-medium">
+
+          {/* Badge */}
+          <div className="absolute top-3 right-3 bg-black/70 text-xs px-3 py-1 rounded-full">
             {product.condition || product.compatible}
           </div>
         </div>
 
-        <div className="p-5">
-          <h3 className="font-semibold text-lg mb-1 line-clamp-2">{product.title}</h3>
-          <p className="text-sm text-zinc-400 mb-4">{product.location}</p>
-          
-          <div className="flex items-center justify-between">
-            <div>
-              <span className="text-2xl font-bold text-accent">
-                {formatPrice(product.price)}
-              </span>
-            </div>
-            
-            <button 
+        {/* CONTENT */}
+        <div className="p-4 space-y-3">
+
+          {/* Title */}
+          <h3 className="font-semibold text-base leading-tight line-clamp-2">
+            {product.title}
+          </h3>
+
+          {/* Location */}
+          <p className="text-zinc-400 text-sm">
+            {product.location}
+          </p>
+
+          {/* Price + Button */}
+          <div className="flex items-center justify-between mt-4">
+
+            {/* Price */}
+            <span className="text-cyan-400 font-bold text-lg tracking-tight">
+              {formatPrice(product.price)}
+            </span>
+
+            {/* Add Button */}
+            <button
               onClick={(e) => {
                 e.stopPropagation();
                 addToCart(product);
               }}
-              className="bg-accent hover:bg-cyan-400 text-black px-5 py-3 rounded-2xl font-medium flex items-center gap-2 transition-all active:scale-95"
+              className="bg-cyan-400 hover:bg-cyan-300 text-black px-3 py-2 rounded-lg flex items-center gap-1 text-sm font-medium shadow-md shadow-cyan-500/20 transition-all active:scale-95"
             >
-              <ShoppingCart className="w-5 h-5" />
+              <ShoppingCart className="w-4 h-4" />
               Add
             </button>
           </div>
         </div>
       </div>
 
-      <ProductDetailModal 
-        product={product} 
-        isOpen={showDetail} 
-        onClose={() => setShowDetail(false)} 
+      {/* MODAL */}
+      <ProductDetailModal
+        product={product}
+        isOpen={showDetail}
+        onClose={() => setShowDetail(false)}
       />
     </>
   );
