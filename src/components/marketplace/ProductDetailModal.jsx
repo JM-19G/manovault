@@ -183,7 +183,7 @@ export default function ProductDetailModal({ product, isOpen, onClose }) {
                     addToCart(product);
                     onClose();
                   }}
-                  className="w-full mt-6 bg-accent hover:bg-cyan-400 text-black py-4 rounded-xl font-semibold flex items-center justify-center gap-2"
+                  className="w-full mt-6 bg-accent hover:bg-cyan-300 text-zinc-950 py-4 rounded-xl font-semibold flex items-center justify-center gap-2 active:scale-[0.99] transition"
                 >
                   <ShoppingCart className="w-5 h-5" />
                   Add to Cart
