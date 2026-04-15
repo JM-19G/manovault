@@ -32,7 +32,7 @@ function ProductCard({ product }) {
       {/* CARD */}
       <div
         onClick={() => setShowDetail(true)}
-        className="cursor-pointer bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden"
+        className="group cursor-pointer bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-[0_20px_60px_-35px_rgba(0,0,0,0.85)] hover:border-white/20 hover:-translate-y-0.5 transition-all will-change-transform"
       >
 
         {/* IMAGE */}
@@ -60,10 +60,10 @@ function ProductCard({ product }) {
           />
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
 
           {/* Badge */}
-          <div className="absolute top-3 right-3 bg-black/70 text-xs px-3 py-1 rounded-full">
+          <div className="absolute top-3 right-3 bg-black/60 backdrop-blur text-xs px-3 py-1 rounded-full border border-white/10">
             {product.condition || product.compatible}
           </div>
 
@@ -73,7 +73,7 @@ function ProductCard({ product }) {
               e.stopPropagation();
               toggleFavorite(product);
             }}
-            className="absolute top-3 left-3 w-9 h-9 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center border border-white/10 transition-all duration-200 hover:scale-110 active:scale-95"
+            className="absolute top-3 left-3 w-10 h-10 rounded-2xl bg-black/45 backdrop-blur-md flex items-center justify-center border border-white/10 transition-all duration-200 hover:scale-110 active:scale-95"
           >
             <Heart
               className={`w-4 h-4 ${
@@ -84,10 +84,10 @@ function ProductCard({ product }) {
         </div>
 
         {/* CONTENT */}
-        <div className="p-4 space-y-3">
+        <div className="p-5 space-y-3">
 
           {/* Title */}
-          <h3 className="font-semibold text-base leading-tight line-clamp-2">
+          <h3 className="font-semibold text-[15px] md:text-base leading-tight line-clamp-2">
             {product.title}
           </h3>
 
@@ -100,7 +100,7 @@ function ProductCard({ product }) {
           <div className="flex items-center justify-between mt-4">
 
             {/* Price */}
-            <span className="text-cyan-400 font-extrabold text-lg tracking-tight">
+            <span className="text-accent font-extrabold text-lg tracking-tight">
               {formatPrice(product.price)}
             </span>
 
@@ -110,7 +110,7 @@ function ProductCard({ product }) {
                 e.stopPropagation();
                 addToCart(product);
               }}
-              className="bg-cyan-400 text-zinc-950 px-4 py-2 rounded-xl flex items-center gap-2 text-sm font-semibold hover:bg-cyan-300 active:scale-95 transition"
+              className="bg-gradient-to-r from-accent to-cyan-300 text-zinc-950 px-4 py-2 rounded-2xl flex items-center gap-2 text-sm font-semibold hover:brightness-105 active:scale-95 transition shadow-lg shadow-cyan-500/15"
               >
               <ShoppingCart className="w-4 h-4" />
                Add

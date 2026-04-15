@@ -10,7 +10,9 @@ export default function Home() {
   return (
     <>
       {/* 🚀 HERO SECTION */}
-      <section className="pt-28 pb-24 text-center">
+      <section className="relative pt-28 pb-24 text-center overflow-hidden">
+        <div aria-hidden="true" className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-r from-cyan-500/25 via-blue-500/15 to-transparent blur-3xl" />
+        <div aria-hidden="true" className="absolute -bottom-56 right-0 w-[700px] h-[420px] bg-gradient-to-l from-cyan-500/15 via-transparent to-transparent blur-3xl" />
         <div className="max-w-5xl mx-auto px-6">
 
           {/* Heading */}
@@ -31,10 +33,10 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-4">
             <button 
               onClick={() => setActiveTab('cars')}
-              className={`px-8 py-3 rounded-xl font-semibold flex items-center gap-2 transition-all ${
+              className={`px-8 py-3 rounded-2xl font-semibold flex items-center gap-2 transition-all shadow-lg ${
                 activeTab === 'cars'
-                  ? 'bg-cyan-400 text-black shadow-lg shadow-cyan-500/20'
-                  : 'border border-white/10 hover:border-white/20'
+                  ? 'bg-gradient-to-r from-accent to-cyan-300 text-zinc-950 shadow-cyan-500/20'
+                  : 'border border-white/10 hover:border-white/20 bg-white/5 backdrop-blur'
               }`}
             >
               <Car className="w-5 h-5" /> Browse Cars
@@ -42,10 +44,10 @@ export default function Home() {
 
             <button 
               onClick={() => setActiveTab('parts')}
-              className={`px-8 py-3 rounded-xl font-semibold flex items-center gap-2 transition-all ${
+              className={`px-8 py-3 rounded-2xl font-semibold flex items-center gap-2 transition-all shadow-lg ${
                 activeTab === 'parts'
-                  ? 'bg-cyan-400 text-black shadow-lg shadow-cyan-500/20'
-                  : 'border border-white/10 hover:border-white/20'
+                  ? 'bg-gradient-to-r from-accent to-cyan-300 text-zinc-950 shadow-cyan-500/20'
+                  : 'border border-white/10 hover:border-white/20 bg-white/5 backdrop-blur'
               }`}
             >
               <Wrench className="w-5 h-5" /> Browse Parts
@@ -57,7 +59,7 @@ export default function Home() {
 
       {/* 🔍 SEARCH / FILTER */}
       <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-10 pb-12">
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl">
+        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl shadow-black/30">
           <VehicleSelector onFilterChange={setFilters} />
         </div>
       </div>

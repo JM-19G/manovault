@@ -31,7 +31,7 @@ export default function VehicleSelector({ onFilterChange }) {
           <select 
             value={make}
             onChange={(e) => handleChange(e.target.value, '', '')}
-            className="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-5 py-4 appearance-none focus:border-accent"
+            className="w-full bg-zinc-950/40 border border-white/10 rounded-2xl px-5 py-4 appearance-none focus:outline-none focus:border-accent focus:ring-2 focus:ring-cyan-500/20"
           >
             <option value="">Any Make</option>
             {makes.map(m => <option key={m} value={m}>{m}</option>)}
@@ -47,7 +47,7 @@ export default function VehicleSelector({ onFilterChange }) {
             value={model}
             onChange={(e) => handleChange(make, e.target.value, year)}
             disabled={!make}
-            className="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-5 py-4 appearance-none focus:border-accent disabled:opacity-50"
+            className="w-full bg-zinc-950/40 border border-white/10 rounded-2xl px-5 py-4 appearance-none focus:outline-none focus:border-accent focus:ring-2 focus:ring-cyan-500/20 disabled:opacity-50"
           >
             <option value="">Any Model</option>
             {make && models[make] && models[make].map(m => (
@@ -64,7 +64,7 @@ export default function VehicleSelector({ onFilterChange }) {
           <select 
             value={year}
             onChange={(e) => handleChange(make, model, e.target.value)}
-            className="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-5 py-4 appearance-none focus:border-accent"
+            className="w-full bg-zinc-950/40 border border-white/10 rounded-2xl px-5 py-4 appearance-none focus:outline-none focus:border-accent focus:ring-2 focus:ring-cyan-500/20"
           >
             <option value="">Any Year</option>
             {Array.from({ length: 12 }, (_, i) => 2026 - i).map(y => (

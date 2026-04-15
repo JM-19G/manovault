@@ -1,15 +1,8 @@
 import { create } from 'zustand';
 
 export const useCartStore = create((set) => ({
-  // 🛒 CART STATE
   cart: [],
-
-  // ❤️ FAVORITES STATE
   favorites: [],
-
-  // =========================
-  // 🛒 CART FUNCTIONS
-  // =========================
 
   addToCart: (product) =>
     set((state) => {
@@ -18,9 +11,7 @@ export const useCartStore = create((set) => ({
       if (existing) {
         return {
           cart: state.cart.map((item) =>
-            item.id === product.id
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
+            item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
           )
         };
       }
@@ -37,19 +28,13 @@ export const useCartStore = create((set) => ({
 
   clearCart: () => set({ cart: [] }),
 
-  // =========================
-  // ❤️ FAVORITES FUNCTIONS
-  // =========================
-
   toggleFavorite: (product) =>
     set((state) => {
-      const exists = state.favorites.find((item) => item.id === product.id);
+      const exists = state.favorites.some((item) => item.id === product.id);
 
       if (exists) {
         return {
-          favorites: state.favorites.filter(
-            (item) => item.id !== product.id
-          )
+          favorites: state.favorites.filter((item) => item.id !== product.id)
         };
       }
 
@@ -58,3 +43,4 @@ export const useCartStore = create((set) => ({
       };
     })
 }));
+

@@ -29,7 +29,7 @@ export default function ProductGrid({ type, filters }) {
           placeholder={`Search ${type === 'cars' ? 'cars' : 'auto parts'}...`}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:border-accent placeholder-zinc-500"
+          className="w-full bg-white/5 backdrop-blur border border-white/10 rounded-3xl px-6 py-4 text-base md:text-lg focus:outline-none focus:border-accent focus:ring-2 focus:ring-cyan-500/20 placeholder-zinc-500"
         />
       </div>
 

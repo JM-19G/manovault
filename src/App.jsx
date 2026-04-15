@@ -8,7 +8,7 @@ function App() {
   const [page, setPage] = useState('home');
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-black text-white">
+    <div className="min-h-screen text-white">
       
       <Header setPage={setPage} />
 
