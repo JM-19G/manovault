@@ -5,7 +5,7 @@ import CartDrawer from './CartDrawer';
 import SellModal from './SellModal';
 import AccountModal from './AccountModal';
 
-export default function Header({ setPage }) {
+export default function Header({ setPage, setActiveTab }) {
   const cart = useCartStore((state) => state.cart);
   const favorites = useCartStore((state) => state.favorites);
 
@@ -58,14 +58,20 @@ export default function Header({ setPage }) {
           {/* NAV */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
             <button 
-              onClick={() => setPage('home')}
+              onClick={() => {
+                setPage('home');
+                setActiveTab?.('cars');
+              }}
               className="text-zinc-200 hover:text-accent transition-colors"
             >
               Browse Cars
             </button>
 
             <button 
-              onClick={() => setPage('home')}
+              onClick={() => {
+                setPage('home');
+                setActiveTab?.('parts');
+              }}
               className="text-zinc-200 hover:text-accent transition-colors"
             >
               Browse Parts

@@ -3,8 +3,7 @@ import { Car, Wrench } from 'lucide-react';
 import VehicleSelector from '../components/common/VehicleSelector';
 import ProductGrid from '../components/marketplace/ProductGrid';
 
-export default function Home() {
-  const [activeTab, setActiveTab] = useState('cars');
+export default function Home({ activeTab, setActiveTab }) {
   const [filters, setFilters] = useState({ make: '', model: '', year: '' });
 
   return (

@@ -6,13 +6,14 @@ import Footer from './components/common/Footer';
 
 function App() {
   const [page, setPage] = useState('home');
+  const [activeTab, setActiveTab] = useState('cars');
 
   return (
     <div className="min-h-screen text-white">
       
-      <Header setPage={setPage} />
+      <Header setPage={setPage} activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {page === 'home' && <Home />}
+      {page === 'home' && <Home activeTab={activeTab} setActiveTab={setActiveTab} />}
       {page === 'saved' && <SavedItems />}
 
       <Footer />
